@@ -1,0 +1,9 @@
+pour realiser le test :
+
+copier le fichier python et le fichier account_statement dans un repertoire
+executer le fichier python
+
+cela devrait : 
+     generer le meme fichier reportsb.xlsx que celui de du repertoire test : "resultat reportsb.xlsx". ou proche, si de nouvelles versions de code ont legerement modifiées le format du fichier de reporting.
+     affichera l'ecran ce qui se trouve dans le fichier ecran.txt du repertoire test : "resultat ecran.txt"
+

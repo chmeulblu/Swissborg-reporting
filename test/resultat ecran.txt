@@ -1,0 +1,54 @@
+inputfile : account_statement.xlsx 
+outputfile : reportsb.xlsx
+
+['Currency identifiée : EUR' 'Currency identifiée : CHSB'
+ 'Currency identifiée : BTC' 'Currency identifiée : DOT']
+
+pour la currency : EUR
+nb de transaction (achat , exchange ...) 	: 37
+montant total investi en € 			: 15952 €
+
+il reste  3645.52 EUR en portefeuille
+
+
+
+pour la currency : CHSB
+nb de transaction (achat , exchange ...) 	: 4
+montant total investi en € 			: 5788 €
+nombre de CHSB achetés 				: 14977.43
+prix moyen pondéré de ces achats		: 0.39
+nombre de CHSB reçus en Payout 			: 50.46
+nb de CHSB total 				: 15027.89
+
+il reste  15027.89 CHSB en portefeuille
+
+
+
+pour la currency : BTC
+nb de transaction (achat , exchange ...) 	: 18
+montant total investi en € 			: 19980 €
+nombre de BTC achetés 				: 0.67
+prix moyen pondéré de ces achats		: 29843.43
+nb de BTC total 				: 0.67
+cours actuel BTC				: 27925.54
+au cours actuel, cela représente une valeur de 	: 18696.28
+
+il reste  0.67 BTC en portefeuille
+
+
+
+pour la currency : DOT
+nb de transaction (achat , exchange ...) 	: 2
+montant total investi en € 			: 198 €
+nombre de DOT achetés 				: 13.85
+prix moyen pondéré de ces achats		: 14.31
+nombre de DOT reçus en Payout 			: 0.02
+nb de DOT total 				: 13.87
+cours actuel DOT				: 4.78
+au cours actuel, cela représente une valeur de 	: 66.25
+
+il reste  13.87 DOT en portefeuille
+
+
+
+traitement terminé, le reporting formaté est sauvegardé dans le fichier : reportsb.xlsx

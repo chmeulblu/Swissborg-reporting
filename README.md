@@ -37,8 +37,10 @@ lancer le programme python
 
 -h : help
 ## hypotheses
-le format attendu du fichier swissborg ( juin 2023) : 
-Local time - Time in UTC -	Type -	Currency -	Gross amount -	Gross amount (EUR)	- Fee - 	Fee (EUR)- Net amount - 	Net amount (EUR)	- Note
+le format attendu du fichier swissborg ( juin 2023) :
+
+| Local time | Time in UTC | Type | Currency | Gross amount | Gross amount (EUR) | Fee | Fee (EUR) | Net amount | Net amount (EUR) | Note |
+|------------|-------------|------|----------|--------------|--------------------|-----|-----------|------------|------------------|------|
 
 la monnaie fiat de l exchange est l'Euro.
 ## fonctionnalités ..pour plus tard

@@ -180,7 +180,7 @@ for cur in list_currency :
     tab_buy_sell['Montant '+ cur+ ' KYC']= tab_buy_sell["Statut KYC"]*tab_buy_sell['Montant ' + cur +' Total']
 
     # nouvelle colonne p/p , perte ou profit d une ligne d achat par rapport au cours actuel.
-    tab_buy_sell["p/p"]=0     # init à zero , pourrait etre initialisé a la valeur p/p au moment du traitement ( puisque  l'on a le cours )
+    #tab_buy_sell["p/p"]=0     # init à zero , pourrait etre initialisé a la valeur p/p au moment du traitement ( puisque  l'on a le cours )
 
 
     # on mets les colonnes dans l'ordre choisi pour le fichier du reporting  ( à adapter selon votre souhait)
