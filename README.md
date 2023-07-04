@@ -1,26 +1,30 @@
 
 # Swissborg analyzer
 
-Ce programme python analyse le fichier état csv exporté par Swissborg. 
+Ce programme python analyse et retraite le fichier de relevé de compte exporté par Swissborg. 
 
 
 
 
 ## Features
 
-- lit le fichier csv Swissborg (format excel)
-- le reformate dans un nouveau fichier excel customizé et plus facilement exploitable :
-    creer un onglet par crypto, additionne les payouts ...
+- Lit le fichier de relevé de compte Excel de Swissborg "account_statement"
+- Le reformate dans un nouveau fichier excel plus facilement exploitable dans un reporting global de suivi :
+    crée un onglet par crypto, additionne les payouts ...
 
-- affiche à l'écran une synthese par crypto
+|   | Transaction | Compte | Operation | Montant euro | Date | cours | Statut KYC | Montant KYC | Montant BTC KYC | Montant BTC Total |
+|---|-------------|--------|-----------|--------------|------|-------|------------|-------------|-----------------|-------------------|
+- Affiche à l'écran une synthèse par crypto.
 
 
 
 ## Pré-requis
-installation de bybliothèques python via le fichier requirements.txt :
+python 3
+
+installation des bibliothèques python nécessaires via le fichier requirements.txt :
 pip install -r requirements.txt -v
-## démarrage
-copier le fichier python et le fichier swissborg "account_statement" dans le meme repertoire
+## Installation et fonctionnement
+copiez le fichier python et le fichier Swissborg "account_statement" dans le même repertoire
 
 ouvrez un terminal ( fenetre )
 
@@ -37,13 +41,27 @@ lancer le programme python
 
 -h : help
 ## hypotheses
-le format attendu du fichier swissborg ( juin 2023) :
-
+Le format attendu du fichier de relevé de compte Swissborg ( juin 2023) : 
 | Local time | Time in UTC | Type | Currency | Gross amount | Gross amount (EUR) | Fee | Fee (EUR) | Net amount | Net amount (EUR) | Note |
 |------------|-------------|------|----------|--------------|--------------------|-----|-----------|------------|------------------|------|
 
-la monnaie fiat de l exchange est l'Euro.
-## fonctionnalités ..pour plus tard
-option -f pour customiser la monnaie fiat utilisée ( US ...)
+Les données Swissborg commence ligne 14. Ligne où se trouve les titres des colonnes (ci dessus).
 
-formatage automatique de la largeur des colonnes du fichier export ( largeur fixe pour  l'instant)
+la monnaie fiat de l'exchange est l'Euro.
+
+
+## fonctionnalités ... pour plus tard
+
+
+Dimensionnement automatique de la largeur des colonnes du fichier de reporting généré ( largeur identique fixe pour  l'instant pour toutes les colonnes ). Contactez moi si vous savez comment faire !
+## Tester votre installation
+
+Pour tester le bon fonctionnement du programme dans votre environnement, vous trouverez dans le repertoire "test" un fichier type account_statement.xlsx  ainsi que les outputs que vous devriez obtenir apres traitement de ce fichier : report excel et copie des informations écran.
+
+
+
+
+## Feedback
+
+Si vous avez des feedbacks, questions, suggestions, merci de contacter tepejean@protonmail.com
+
