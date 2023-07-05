@@ -62,7 +62,7 @@ print( 'inputfile :' , inputfile, '\noutputfile :' , reportfile)
 
 
 kyc = 1   		# swissborg est KYC par defaut ( a tuner peut etre si cas particuliers... )
-Header = 13		# nombre de lignes d entete ( = inutile, à sauter  ) du fichier fourni par SB.
+Header = 13		# nombre de lignes d entete ( = inutile, à sauter ) du fichier fourni par SB.
 
 #  dans cette version on prend comme hypothese que la currency fiat de depot est l'euro ('EUR')
 
@@ -82,7 +82,7 @@ compte_sb = pd.read_excel(inputfile,header=Header)
 
 # -----------------------------------------------------
 #
-#  traitements globaux sur l ensemble du datamap 
+#  traitements globaux sur l'ensemble du datamap 
 #  en préliminaire aux traitements individuels par currency
 #  
 #
@@ -94,27 +94,27 @@ compte_sb['Local time'] = pd.to_datetime(compte_sb['Local time'])
 #  2 - si une operation de vente : le montant vendu passe en négatif
 compte_sb.loc[compte_sb.Type =='Sell' , 'Net amount'] = compte_sb['Net amount'] * -1
 
-# 3 - s il est mentionné un exchange ET une autre monnaie que EUR ( c est a dire une cryptomonnaie) dans la colonne 'Note', il s agit vraiment d un exchange entre crypto:
-# on met à jour le type d operation à Exchange, et le montant en euro passe à zero ( il n y a pas d'achat en euro sur cette opération)
+# 3 - s il est mentionné un exchange ET une autre monnaie que EUR ( c est a dire une cryptomonnaie) dans la colonne 'Note', il s'agit vraiment d'un exchange entre crypto:
+# on met à jour le type d'operation à Exchange, et le montant en euro passe à zero ( il n y a pas d'achat en euro sur cette opération)
 compte_sb.loc[
         (compte_sb.Note.str.contains('Exchanged') &
         ((compte_sb.Note.str.contains('EUR') == False )))  ,
              ['Type','Gross amount (EUR)'] ]=['Exchange',0] 
-# sinon, il s agit d un Achat : on remplace le type d operation 'buy' par Achat et on supprime le texte de la note qui allourdit le tableau
+# sinon, il s agit d un Achat : on remplace le type d'operation 'buy' par Achat et on supprime le texte de la note qui allourdit le tableau
 compte_sb.loc[ compte_sb.Note.str.contains('EUR') == True, ['Type','Note']]= ['Achat','']
 
 
 # on memorise la liste de toutes les currencies traitées :
-# a noter , la currency fiat , l Euro (EUR) en fait partie
+# a noter, la currency fiat = l'euro (EUR) en fait partie
 list_currency = compte_sb['Currency'].unique()
 print()
 print('Currency identifiée : ' + list_currency)
 
-# on définit les colonnes de l'Excel qui sont utiles pour notre reporting. on ne gardera que ces colonnes
+# on définit les colonnes de l'Excel qui sont utiles pour notre reporting. On ne gardera que ces colonnes
 mes_colonnes =['Local time', 'Type','Gross amount (EUR)', 'Net amount', 'Net amount (EUR)','Note']
 
-# on initialise la structure Excell de reporting : nom du fichier + XlsxWriter comme structure. ( permet plus de souplesse )
-# on en profite pour reformater les données correspondantes à une date+heure en J/M/A h:m. facilite la lecture des dates du tableau final , pas obligatoire.
+# on initialise la structure Excel de reporting : nom du fichier + XlsxWriter comme structure. ( permet plus de souplesse )
+# on en profite pour reformater les données correspondantes à une date+heure en J/M/A h:m. facilite la lecture des dates du tableau final, pas obligatoire.
 writer = pd.ExcelWriter(reportfile, engine='xlsxwriter',datetime_format='d mmm yyyy  hh:mm:ss')
 
 
@@ -123,8 +123,8 @@ writer = pd.ExcelWriter(reportfile, engine='xlsxwriter',datetime_format='d mmm y
 # ------------------------------------------------------------------------------------
 #
 # on demarre ! 
-# on itere et traite chacune des Currency
-# un onglet est créé par currency 
+# on itere et traite chacune des Currencies
+# un onglet est ensuite créé pour chaque currency 
 #
 # ------------------------------------------------------------------------------------
 
@@ -147,7 +147,7 @@ for cur in list_currency :
     Total_Payouts = tab_payouts['Net amount'].sum()
  
   
-    # on calcule le cours de la currency de chaque transaction ... c est a dire le montant réeellement transformé en currency / montant net de currency obtenu
+    # on calcule le cours de la currency de chaque transaction ... c'est à dire le montant réeellement transformé en currency / montant net de currency obtenu
     cours = ( (tab_buy_sell['Net amount (EUR)'] / abs(tab_buy_sell['Net amount'])))
 
     # on renomme les colonnes selon tableau reporting désiré
@@ -159,7 +159,7 @@ for cur in list_currency :
         tab_buy_sell.loc [ len(compte_sb.index) ] = payout_row  # tous les Payouts du reporting auront le meme numero d index . cela peut etre changé ( increment d une variable) . pas fait) 
  
  
-    # on rajoute quelques nouvelels colonnes que l on souhaite voir dans le reporting,  en initialisant avec des valeurs si possible : 
+    # on rajoute quelques nouvelles colonnes que l'on souhaite voir dans le reporting,  en initialisant avec des valeurs si possible : 
 
     #  nouvelle colonne du cours de la currency au moment de la transaction
     tab_buy_sell["cours"] = cours
@@ -179,29 +179,35 @@ for cur in list_currency :
     #nouvelle colonne pour montant KYC de la currency
     tab_buy_sell['Montant '+ cur+ ' KYC']= tab_buy_sell["Statut KYC"]*tab_buy_sell['Montant ' + cur +' Total']
 
-    # nouvelle colonne p/p , perte ou profit d une ligne d achat par rapport au cours actuel.
+    # nouvelle colonne p/p , perte ou profit d une ligne d achat par rapport au cours actuel. Abandonné pour l'instant.
     #tab_buy_sell["p/p"]=0     # init à zero , pourrait etre initialisé a la valeur p/p au moment du traitement ( puisque  l'on a le cours )
 
 
-    # on mets les colonnes dans l'ordre choisi pour le fichier du reporting  ( à adapter selon votre souhait)
-    tab_buy_sell = tab_buy_sell[['Transaction', 'Compte', 'Operation', 'Montant euro', 'Date', 'cours', 'Statut KYC', 'Montant KYC', 'Montant ' + cur+ ' KYC', 'Montant ' + cur + ' Total', 'p/p' ,'Note']]
+    # on mets les colonnes dans l'ordre choisi pour le fichier du reporting  (à adapter selon votre souhait)
+    tab_buy_sell = tab_buy_sell[['Transaction', 'Compte', 'Date','Operation', 'Montant euro', 'cours', 'Statut KYC', 'Montant KYC', 'Montant ' + cur+ ' KYC', 'Montant ' + cur + ' Total','Note']]
 
-
+    # 
     # --------------------------------------------------------------------
     # ça y est, le reporting pour cette currency est finalisé
     # on le stocke dans un onglet excel au nom de cette currency 
     
-    tab_buy_sell.to_excel(writer, sheet_name=cur)
+    tab_buy_sell.to_excel(writer, sheet_name=cur,index=False,freeze_panes=(1,1))
     
+    #  dernier ajustement : on dimensionne la largeur de chacune des colonnes à son element le plus grand en nombre de caracteres
+    for column in tab_buy_sell:
+        column_length = max(tab_buy_sell[column].astype(str).map(len).max(), len(column))
+        col_idx = tab_buy_sell.columns.get_loc(column)
+        writer.sheets[cur].set_column(col_idx, col_idx, column_length+1)
+        
     # --------------------------------------------------------------------
  
  
     # -------------------------------------------------------------------------------------------------------------
     #
     # en bonus : 
-    # affiche sur l écran ((stdout) mais pas dans le fichier de reporting : quelques valeurs de synthese pour chaque currency :
-    # ce n est pas necessaire pour le fichier reporting
-    # juste pour information  et utilisation/recopie si utile par ailleurs
+    # affiche sur l'ecran ((stdout), mais pas dans le fichier de reporting, quelques valeurs de synthese pour chaque currency :
+    # ce n'est pas necessaire pour le fichier reporting
+    # juste pour information et utilisation/recopie si utile par ailleurs
     #
     # -------------------------------------------------------------------------------------------------------------
     
@@ -292,7 +298,7 @@ for cur in list_currency :
 #
 # -------------------------------------------------------------------------------------------------
 
-writer.save()
+writer.close()
 
 print()
 print('traitement terminé, le reporting formaté est sauvegardé dans le fichier : ' + reportfile )
