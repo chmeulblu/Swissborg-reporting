@@ -19,6 +19,7 @@ Ce programme python analyse et retraite le fichier de relevé de compte exporté
 |             | Swissborg | 27 avr 2022  08:49:50 | Achat     | 1500         | 35330,01649 | 1          | 1500        | 0,042244532     | 0,042244532       |
 
 - Affiche à l'écran une synthèse par crypto. Par exemple ci-dessous pour la crypto DOT :
+
 pour la currency : DOT  
 nombre de transaction (achat , exchange ...) 	: 2  
 montant total investi en € 			: 198 €  
