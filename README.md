@@ -21,16 +21,15 @@ Ce programme python analyse et retraite le fichier de relevé de compte exporté
 - Affiche à l'écran une synthèse par crypto. Par exemple ci-dessous pour la crypto DOT :
  pour la currency : DOT                                  |
 |---------------------------------------------------------|
-| nb de transaction (achat , exchange ...) 	: 2           |
-| montant total investi en € 			: 198 €                   |
-| nombre de DOT achetés 				: 13.85                       |
-| prix moyen pondéré de ces achats		: 14.31               |
-| nombre de DOT reçus en Payout 			: 1.09                 |
-| nb de DOT total 				: 14.93                             |
-| cours actuel DOT				: 4.92                              |
-| au cours actuel, cela représente une valeur de 	: 73.48 |
-|                                                         |
-| il reste  14.93 DOT en portefeuille                     |
+nb de transaction (achat , exchange ...) 	: 2  
+montant total investi en € 			: 198 €  
+nombre de DOT achetés 				: 13.85  
+prix moyen pondéré de ces achats	: 14.31  
+nombre de DOT reçus en Payout 		: 1.09  
+nb de DOT total 				    : 14.93  
+cours actuel DOT				    : 4.92  
+au cours actuel, cela représente une valeur de 	: 73.48  
+il reste  14.93 DOT en portefeuille
 
 et ceci pour chacune des cryptos en portefeuille ( ou que vous avez utilisés dans Swissborg, même s'il n y en plus en portefeuille)
 
