@@ -61,7 +61,7 @@ Le format attendu du fichier de relevé de compte Swissborg ( juin 2023) :
 | Local time | Time in UTC | Type | Currency | Gross amount | Gross amount (EUR) | Fee | Fee (EUR) | Net amount | Net amount (EUR) | Note |
 |------------|-------------|------|----------|--------------|--------------------|-----|-----------|------------|------------------|------|
 
-Les données Swissborg commence ligne 14. Ligne où se trouve les titres des colonnes (ci dessus).
+Les données Swissborg commencent ligne 14. Ligne où se trouve les titres des colonnes (ci dessus).
 
 la monnaie fiat de l'exchange est l'Euro.
 
