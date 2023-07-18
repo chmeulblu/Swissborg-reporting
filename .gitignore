@@ -1,3 +1,7 @@
+# les fichiers de test dans code
+code/account_statement.xlsx
+code/reportsb.xlsx
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
