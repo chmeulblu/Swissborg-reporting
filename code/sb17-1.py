@@ -216,7 +216,7 @@ for cur in list_currency :
     print('pour la currency : '+ cur )
     
     nb_transaction = tab_buy_sell.Transaction.count()
-    print('nb de transaction (achat , exchange ...) \t: ' + str (nb_transaction))
+    print('nb de transactions (achat , exchange ...) \t: ' + str (nb_transaction))
  
  
     # memorise le total des retraits du portefeuille de cette currency s'il y en a
